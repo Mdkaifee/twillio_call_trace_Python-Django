@@ -102,6 +102,12 @@ DATABASES = {
 # Twilio & OpenAIConfiguration
 
 
+TWILIO_ACCOUNT_SID = 'AC78898acd9f9b7c97827c3a9622512bf1'
+TWILIO_AUTH_TOKEN = 'de434717c6345e6e1b1903c659624955'
+TWILIO_DEFAULT_NUMBER = '+19344515469'  # (Optional) your Twilio number
+OPENAI_API_KEY = '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'  # (Optional) your OpenAI API key
+
+
 
 # # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
