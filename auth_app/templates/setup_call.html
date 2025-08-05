@@ -1,0 +1,66 @@
+<!-- setup_call.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+         * {
+            box-sizing: border-box;
+        }
+        .container {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 30px;
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          font-family: Arial, sans-serif;
+        }
+        input, button {
+          width: 100%;
+          padding: 12px;
+          margin-top: 12px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+        }
+        button {
+          background: #4A90E2;
+          color: white;
+          font-weight: bold;
+          border: none;
+          cursor: pointer;
+        }
+        button:hover { background: #357ABD; }
+        a { display: block; margin-top: 20px; text-align: center; color: #4A90E2; }
+      </style>
+    <title>Setup Call</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Setup Call</h1>
+    <!-- <form method="POST" action="{% url 'setup_call' %}">
+        {% csrf_token %}
+        <label for="to">Number to Call:</label>
+        <input type="text" name="to" id="to" placeholder="Number (e.g. +918298268740)" required>
+        <button type="submit">Start Call</button>
+    </form> -->
+    <form method="POST" action="{% url 'setup_call' %}" id="callForm">
+        {% csrf_token %}
+        <input type="text" name="to" placeholder="+916201273115" required>
+        <button type="submit" id="submitBtn">Start Call</button>
+    </form>
+    
+    <script>
+        const form = document.getElementById('callForm');
+        const button = document.getElementById('submitBtn');
+    
+        form.addEventListener('submit', function(e){
+            // disable button after first click
+            button.disabled = true;
+        });
+    </script>
+    
+    <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

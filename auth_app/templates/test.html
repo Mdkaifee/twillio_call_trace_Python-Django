@@ -1,0 +1,91 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f2f5;
+    }
+    .message {
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    hello world
+  </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sentiment check</title>
+  <style>
+        * {
+            box-sizing: border-box;
+        }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; margin: 0; background: #f0f2f5;
+    }
+    .box {
+      background: #fff; padding:30px; border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1); width:400px;
+    }
+    textarea, button {
+      width:100%; padding:10px; margin-top:10px; border-radius:6px;
+      border:1px solid #ccc; font-size:14px;
+    }
+    button {
+      background:#4A90E2; color:#fff; font-weight:bold;
+      cursor:pointer; border:none;
+    }
+    button:hover { background:#357ABD; }
+    .result { margin-top:15px; font-size:16px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Sentiment Analysis</h2>
+    <form id="sentiment-form">
+      <textarea name="text" id="text" rows="4" placeholder="Type something…"></textarea>
+      <button type="submit">🔍 Analyze</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+  <script>
+    document.getElementById("sentiment-form").onsubmit = async e => {
+      e.preventDefault();
+      const text = document.getElementById("text").value;
+      const res = await fetch("{% url 'analyze_sentiment' %}", {
+        method: "POST",
+        headers: {"X-CSRFToken": "{{ csrf_token }}", "Content-Type": "application/x-www-form-urlencoded"},
+        body: new URLSearchParams({text})
+      });
+      const data = await res.json();
+      if (data.error) {
+        document.getElementById("result").textContent = data.error;
+      } else {
+        document.getElementById("result").textContent =
+          `Label: ${data.label}, Confidence: ${(data.score*100).toFixed(1)}%`;
+      }
+    };
+  </script>
+</body>
+</html>

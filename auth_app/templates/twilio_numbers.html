@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Numbers</title>
+</head>
+<body>
+    <h2>Your Twilio Numbers</h2>
+    <ul>
+        {% for num in numbers %}
+            <li>
+                <a href="{% url 'call_details_by_number' num|urlencode %}">{{ num }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Numbers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f5f7fa, #d7e1ec);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 12px 0;
+        }
+
+        .number-link {
+            display: block;
+            background-color: #4A90E2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .number-link:hover {
+            background-color: #357ABD;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #4A90E2;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Twilio Numbers</h2>
+        <ul>
+            {% for num in numbers %}
+                <li>
+                    <a href="{% url 'call_details_by_number' num|urlencode %}" class="number-link">{{ num }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'dashboard' %}" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

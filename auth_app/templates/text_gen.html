@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AI Text-Generation</title>
+    <style>
+          * {
+            box-sizing: border-box;
+        }
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        display: flex; justify-content: center; align-items: start;
+        padding: 40px; background: #f0f2f5; margin:0;
+      }
+      .box {
+        background: white; padding: 30px; border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 500px;
+      }
+      textarea, button {
+        width: 100%; padding: 12px; margin-top: 12px;
+        font-size: 14px; border-radius: 6px; border: 1px solid #ccc;
+      }
+      button {
+        background: #4A90E2; color: white; font-weight: bold;
+        border: none; cursor: pointer;
+      }
+      button:hover { background: #357ABD; }
+      pre {
+        background: #fafafa; padding: 12px; border-radius: 6px;
+        margin-top: 16px; white-space: pre-wrap;
+      }
+      .back { margin-top: 16px; display: block; color: #4A90E2; }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>AI Text-Generation</h2>
+      <form method="post">
+        {% csrf_token %}
+        <label for="prompt">Enter a prompt:</label>
+        <textarea name="prompt" id="prompt" rows="4">{{ prompt }}</textarea>
+        <button type="submit">Generate</button>
+      </form>
+
+      {% if generated %}
+        <h3>Output:</h3>
+        <pre>{{ generated }}</pre>
+      {% endif %}
+
+      <a href="{% url 'dashboard' %}" class="back">← Back to Dashboard</a>
+    </div>
+  </body>
+</html>

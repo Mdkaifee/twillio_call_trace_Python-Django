@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Call Logs for {{ number }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        th {
+            background-color: #4A90E2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Call Logs for {{ number }}</h2>
+
+    {% if calls %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Call SID & Date</th>
+                <th>Status</th>
+                <th>Direction</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Call Type</th>
+                <th>Duration</th>
+                <th>STIR Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for call in calls %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ call.sid }}<br>{{ call.date }}</td>
+                <td>{{ call.status }}</td>
+                <td>{{ call.direction }}</td>
+                <td>{{ call.from }}</td>
+                <td>{{ call.to }}</td>
+                <td>{{ call.type }}</td>
+                <td>{{ call.duration }}</td>
+                <td>{{ call.stir_status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No calls found for this number.</p>
+    {% endif %}
+
+    <a href="{% url 'twilio_numbers' %}">← Back to Twilio Numbers</a>
+</body>
+</html>

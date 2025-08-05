@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forward a Call</title>
+  <style>
+     * {
+            box-sizing: border-box;
+        }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background: #4A90E2;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #357ABD; }
+    a { display: block; margin-top: 20px; text-align: center; color: #4A90E2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Forward a Call</h2>
+    <form method="post" action="{% url 'forward_call' %}">
+      {% csrf_token %}
+      <input name="to" placeholder="Destination number (e.g. +916201273115)" required>
+      <button type="submit">🔁 Forward</button>
+    </form>
+    <a href="{% url 'dashboard' %}">&larr; Back to Dashboard</a>
+  </div>
+</body>
+</html>

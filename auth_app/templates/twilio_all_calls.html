@@ -1,0 +1,245 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>All Call Logs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f6f8;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        a {
+            margin: 10px;
+            text-decoration: none;
+            color: #4A90E2;
+            font-weight: bold;
+        }
+
+        .pagination {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>All Call Logs</h2>
+    <ul>
+        {% for call in calls %}
+            <li>
+                <strong>From:</strong> {{ call.from }} |
+                <strong>To:</strong> {{ call.to }} |
+                <strong>Status:</strong> {{ call.status }} |
+                <strong>Start:</strong> {{ call.start_time }}
+            </li>
+        {% empty %}
+            <li>No call records found.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if previous_page %}
+            <a href="?page={{ previous_page }}">← Previous</a>
+        {% endif %}
+
+        {% if next_page %}
+            <a href="?page={{ next_page }}">Next →</a>
+        {% endif %}
+    </div>
+
+    <br>
+    <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>All Call Logs</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            padding: 10px 15px;
+            background-color: #4A90E2;
+            color: white;
+            margin: 0 5px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .pagination a:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    <h2>All Twilio Call Logs</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Call SID</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Direction</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Call Type</th>
+                <th>Duration (sec)</th>
+                <th>STIR Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for call in calls %}
+                <tr>
+                    <td>{{ call.sid }}</td>
+                    <td>{{ call.start_time }}</td>
+                    <td>{{ call.status }}</td>
+                    <td>{{ call.direction }}</td>
+                    <td>{{ call.from }}</td>
+                    <td>{{ call.to }}</td>
+                    <td>{{ call.call_type }}</td>
+                    <td>{{ call.duration }}</td>
+                    <td>{{ call.stir_status }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="9">No calls found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if previous_page %}
+            <a href="?page={{ previous_page }}">← Previous</a>
+        {% endif %}
+        {% if next_page %}
+            <a href="?page={{ next_page }}">Next →</a>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Twilio Calls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4A90E2;
+            color: white;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            margin: 0 8px;
+            text-decoration: none;
+            color: #4A90E2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>All Twilio Call Logs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Call SID and Date</th>
+                <th>Status</th>
+                <th>Direction</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Call Type</th>
+                <th>Duration</th>
+                <th>STIR Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for call in calls %}
+                <tr>
+                    <td>{{ forloop.counter0|add:serial_start }}</td>
+                    <td>{{ call.sid }}<br><small>{{ call.date }}</small></td>
+                    <td>{{ call.status|title }}</td>
+                    <td>{{ call.direction|title }}</td>
+                    <td>{{ call.from }}</td>
+                    <td>{{ call.to }}</td>
+                    <td>{{ call.type }}</td>
+                    <td>{{ call.duration }}</td>
+                    <td>{{ call.stir_status }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="9">No call records found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="?page={{ page|add:-1 }}">← Previous</a>
+        {% endif %}
+        Page {{ page }} of {{ total_pages }}
+        {% if page < total_pages %}
+            <a href="?page={{ page|add:1 }}">Next →</a>
+        {% endif %}
+    </div>
+
+    <br>
+    <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+</body>
+</html>
