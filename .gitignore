@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# macOS files
+.DS_Store
+
+# Python environments
+*.env
+*.venv
+*.egg-info/
+.eggs/
+
+# Test/coverage files
+coverage/
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Git ignore for migrations (optional if you auto-gen them)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Static/media (optional)
+staticfiles/
+media/
+
+# dotenv files
+.env
+.env.*
+
+# JetBrains IDEs
+.idea/
