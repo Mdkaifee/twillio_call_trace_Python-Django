@@ -14,7 +14,7 @@ from urllib.parse import unquote
 import logging
 from transformers import pipeline
 import openai
-from openai import RateLimitError, OpenAIError
+from openai.error import RateLimitError, OpenAIError
 from django.urls import reverse
 logger = logging.getLogger(__name__)
 client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
